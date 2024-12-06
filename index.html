@@ -45,15 +45,39 @@
             text-decoration: none;
         }
         .home-header {
-            background: url('https://via.placeholder.com/1920x600') no-repeat center center;
-            background-size: cover;
-            height: 300px;
-            color: white;
-            text-align: center;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+    background: url('./images/Iot-cover-image.gif') no-repeat center center;
+    background-size: cover;
+    height: 300px;
+    color: white; /* Keeps the text color visible on most backgrounds */
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6); /* Adds depth and contrast to text */
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    position: relative; /* For overlay positioning */
+}
+
+.home-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4); /* Semi-transparent black overlay */
+    z-index: 1; /* Keeps the overlay behind the text */
+}
+
+.home-header h1 {
+    position: relative; /* Ensures text stays above the overlay */
+    z-index: 2; /* Keeps text on top of the overlay */
+    font-size: 36px;
+    margin: 0;
+    text-transform: uppercase; /* Optional: Makes text bold and clear */
+    letter-spacing: 1px; /* Optional: Improves readability */
+}
+
         .home-header h1 {
             font-size: 4rem;
         }
@@ -89,7 +113,7 @@
 <header class="home-header">
     <div>
         <h1>Smart Environmental Monitoring System</h1>
-        <p>By Team: Alice, Bob, Charlie, Dave</p>
+        <p>By Team: Siva Prasad (H00476424) , Bob, Charlie, Dave</p>
     </div>
 </header>
 
@@ -100,38 +124,250 @@
     <section id="github" class="content-section text-center">
         <h2 class="section-title">Explore Our Project on GitHub</h2>
         <p>Visit our GitHub repository to see the source code, project documentation, and more!</p>
-        <a href="https://github.com/your-repo-link" class="btn btn-custom" target="_blank">Visit GitHub Repository</a>
+        <a href="https://github.com/sivaprasadganji7/TEAMPROJECTIOT.git" class="btn btn-custom" target="_blank">Visit GitHub Repository</a>
     </section>
 
     <!-- Objective Section -->
     <section id="objective" class="content-section">
-        <h2 class="section-title">Objective</h2>
-        <p>The objective of this project is to design a wireless sensor network (WSN) system that is energy-efficient and scalable using ESP32 boards and IoT protocols. The system should be ideal for monitoring environmental parameters like temperature and humidity in real-time.</p>
-        <p>The key focus areas are:</p>
-        <ul>
-            <li><strong>Energy Efficiency:</strong> Low power consumption for long-lasting battery life in remote areas.</li>
-            <li><strong>Data Accuracy:</strong> Ensuring the reliability and accuracy of the environmental data collected.</li>
-            <li><strong>Scalability:</strong> The system should be easily expandable with more nodes for larger areas.</li>
-            <li><strong>Data Transmission:</strong> Fast and reliable data transmission through ESP-NOW and MQTT protocols.</li>
-        </ul>
-    </section>
+    <h2 class="section-title">Overview</h2>
+    <p>The objective of this project is to design a wireless sensor network (WSN) system that is energy-efficient and scalable using ESP32 boards and IoT protocols. The system is ideal for monitoring environmental parameters like temperature and humidity in real-time, providing solutions to common issues faced in industrial and domestic settings.</p>
+    <p><strong>Problem Statement:</strong></p>
+    <p>In industrial and domestic settings, real-time monitoring and control of environmental parameters such as temperature and humidity are crucial for maintaining optimal conditions and ensuring safety. However, traditional monitoring systems often lack flexibility, real-time configurability, and effective communication protocols. This results in inefficiencies in data collection, delayed responses to alerts, and challenges in managing large-scale distributed systems.</p>
+    <p><strong>Proposed Solution:</strong></p>
+    <p>To address these challenges, the project integrates ESP-NOW for low-latency communication between nodes, MQTT for reliable remote monitoring, and DHT sensors for temperature and humidity data acquisition. The system is designed to:</p>
+    <ul>
+        <li><strong>Seamless Communication:</strong> Facilitate low-latency communication between multiple sensor nodes and a central bridge using ESP-NOW.</li>
+        <li><strong>Remote Configurability:</strong> Provide dynamic configuration through MQTT to adjust thresholds and intervals without manual intervention.</li>
+        <li><strong>Real-Time Data Acquisition and Alerts:</strong> Continuously monitor temperature and humidity, triggering alerts based on threshold breaches.</li>
+        <li><strong>Energy Efficiency:</strong> Implement duty cycle management and deep sleep modes for battery-powered nodes, optimizing energy consumption.</li>
+    </ul>
+    <p>The key focus areas are:</p>
+    <ul>
+        <li><strong>Energy Efficiency:</strong> Low power consumption for long-lasting battery life in remote areas.</li>
+        <li><strong>Data Accuracy:</strong> Ensuring the reliability and accuracy of the environmental data collected.</li>
+        <li><strong>Scalability:</strong> The system should be easily expandable with more nodes for larger areas.</li>
+        <li><strong>Data Transmission:</strong> Fast and reliable data transmission through ESP-NOW and MQTT protocols.</li>
+    </ul>
+</section>
 
-    <!-- System Architecture Section -->
-    <section id="architecture" class="content-section">
-        <h2 class="section-title">System Architecture</h2>
-        <p>The system consists of several nodes and a central server. Each node gathers data from environmental sensors and sends it to a bridge node, which forwards the data to a central server or MQTT broker.</p>
-        <p><img src="https://via.placeholder.com/800x400" alt="System Architecture Diagram" class="img-fluid mt-4"></p>
-    </section>
+<!-- System Architecture Section -->
+<section id="architecture" class="content-section">
+    <h2 class="section-title">System Architecture</h2>
+    <p>The system architecture consists of multiple sensor nodes, a central bridge node, and a cloud-based server or MQTT broker. The architecture is designed to enable efficient and reliable environmental monitoring with real-time data collection and alerting capabilities.</p>
+    <p><strong>System Process Flow:</strong> Below is the flowchart that illustrates the step-by-step process of how the system operates, from data collection by sensor nodes to cloud-based monitoring:</p>
+    <img src="./images/flowchart.jpeg" alt="System Process Flowchart" class="img-fluid mt-4">
+    
+    <p>The flowchart visually depicts how data flows from sensor nodes to the bridge node and eventually to the MQTT broker for remote monitoring.</p>
+    
+    <p><strong>Sensor Nodes:</strong> Each sensor node is equipped with a DHT sensor (such as DHT11 or DHT22) to collect environmental data, specifically temperature and humidity. These sensor nodes are based on the ESP32 microcontroller and communicate with each other using the ESP-NOW protocol, which allows low-latency, peer-to-peer communication without the need for a traditional Wi-Fi network. The sensor nodes read data at predefined intervals and transmit the data to the bridge node. Additionally, the nodes are designed to optimize power consumption by utilizing deep sleep modes during idle periods, ensuring long-lasting battery life.</p>
+    
+    <p><strong>Bridge Node:</strong> The bridge node acts as an intermediary between the sensor nodes and the cloud server or MQTT broker. It receives data from multiple sensor nodes via ESP-NOW, processes the data, and forwards it to the cloud using the MQTT protocol. This ensures that the collected environmental data is made available for remote monitoring, visualization, and alerting. The bridge node is also responsible for managing the communication between the sensor nodes and ensuring that the data is transmitted reliably. It also performs some basic data validation to ensure the integrity of the transmitted information.</p>
 
-    <!-- Software Implementation Section -->
-    <section id="software" class="content-section">
-        <h2 class="section-title">Software Implementation</h2>
-        <p>The software implementation consists of two main components:</p>
-        <ul>
-            <li><strong>Sensor Node Code:</strong> ESP32 reads sensor data and transmits it using ESP-NOW.</li>
-            <li><strong>Bridge Node Code:</strong> ESP32 receives data from multiple sensor nodes and sends it to a cloud-based MQTT broker.</li>
-        </ul>
-    </section>
+    <p><strong>Central Server / MQTT Broker:</strong> The MQTT broker, hosted on a cloud platform or local server, is responsible for receiving and storing the data from the bridge node. It provides a communication hub for the sensor nodes and the bridge node. Using the MQTT protocol ensures that data is transmitted efficiently and securely. The central server monitors the incoming data for any irregularities or thresholds that exceed predefined limits. If an anomaly is detected (e.g., temperature or humidity levels that fall outside acceptable ranges), it triggers alerts, which can be sent to remote users or integrated with other systems for further action.</p>
+
+    <p>This architecture is scalable, meaning additional sensor nodes can be added easily to expand coverage over larger areas. The system also supports flexible remote configuration through MQTT, allowing users to adjust the thresholds and polling intervals without needing direct physical access to the nodes.</p>
+    
+    <p><img src="./images/architecture.jpg" alt="System Architecture Diagram" class="img-fluid mt-4"></p>
+</section>
+
+ <!-- Hardware Design Section -->
+ <section id="hardware-design" class="content-section">
+    <h2 class="section-title">Hardware Design</h2>
+    <p>The hardware design of the wireless sensor network (WSN) system involves key components to monitor environmental parameters, such as temperature and humidity, in real time. Below is a description of each component and their roles in the system:</p>
+    
+    <h3>Key Components:</h3>
+    <ul>
+        <li><strong>ESP32 Microcontroller:</strong> The ESP32 serves as the central hub for the sensor nodes. It features built-in Wi-Fi, Bluetooth, and ESP-NOW communication capabilities. The ESP32 is chosen for its low power consumption and flexibility in sensor integration.</li>
+        <li><strong>DHT11/DHT22 Sensors (Temperature and Humidity):</strong> These sensors are used to measure temperature and humidity in the environment. The data is then transmitted to the ESP32 microcontroller for processing and transmission.</li>
+        <li><strong>Power Supply:</strong> The system is designed to operate on low power to ensure long-lasting battery life, especially in remote areas. A rechargeable lithium-ion battery or similar power source can be used, with solar panels for recharging where necessary.</li>
+        <li><strong>ESP-NOW Communication Protocol:</strong> The ESP32 microcontrollers communicate with each other using the ESP-NOW protocol, allowing low-latency, peer-to-peer data transfer without requiring Wi-Fi infrastructure.</li>
+        <li><strong>MQTT Protocol:</strong> The central server or MQTT broker collects data from the sensor nodes. MQTT is a lightweight messaging protocol ideal for IoT applications, ensuring efficient data transfer with minimal bandwidth usage.</li>
+        <li><strong>PCB (Printed Circuit Board) Design:</strong> A custom PCB integrates all components for efficient operation and energy management. The PCB includes voltage regulation circuits, GPIO pin connections for sensors, and capacitors for stable power.</li>
+        <li><strong>Energy Management:</strong> The design incorporates deep sleep modes and duty cycling to minimize power consumption, allowing for long-term, low-energy operation of sensor nodes.</li>
+    </ul>
+
+    <h3>Energy Efficiency and Power Optimization:</h3>
+    <p>The system uses low-power techniques such as deep sleep mode and periodic duty cycling to ensure the longevity of the battery, making it suitable for remote deployments.</p>
+</section>
+
+
+<!-- Software Implementation Section -->
+<section id="software" class="content-section">
+    <h2 class="section-title">Software Implementation</h2>
+    <p>The software implementation is divided into two main components: the sensor node code and the bridge node code. Each component plays a crucial role in collecting, transmitting, and receiving environmental data (such as temperature and humidity) across the system. Below is a detailed description of each part:</p>
+
+    <h3>Sensor Node Code:</h3>
+    <p>The sensor node code runs on the ESP32 microcontroller and is responsible for reading data from the environmental sensors (DHT11 or DHT22). The steps involved are:</p>
+    <ul>
+        <li><strong>Sensor Data Collection:</strong> The sensor node is equipped with a DHT11 or DHT22 sensor to measure temperature and humidity. The code reads these values at defined intervals, typically every few seconds or minutes, depending on the system’s configuration.</li>
+        <li><strong>Data Processing:</strong> After reading the data from the sensor, the ESP32 processes the raw sensor values. This may involve basic error checking, like verifying the validity of the data (e.g., checking for extreme temperature or humidity readings).</li>
+        <li><strong>ESP-NOW Communication:</strong> The processed sensor data is then transmitted to a nearby bridge node using the ESP-NOW protocol. ESP-NOW is a low-latency, peer-to-peer communication protocol designed specifically for IoT applications, which helps in efficient data transmission between nodes without relying on a traditional Wi-Fi network.</li>
+        <li><strong>Sleep Mode:</strong> To conserve power, the sensor node is programmed to enter deep sleep mode between sensor readings, reducing energy consumption and extending battery life for long-term deployments.</li>
+    </ul>
+
+    <h3>Bridge Node Code:</h3>
+    <p>The bridge node also runs on an ESP32 microcontroller. It acts as a relay station, collecting data from multiple sensor nodes and forwarding it to the central MQTT broker. The steps involved are:</p>
+    <ul>
+        <li><strong>Data Reception:</strong> The bridge node receives data from multiple sensor nodes via the ESP-NOW protocol. It can handle multiple nodes simultaneously, acting as a central collector for sensor data.</li>
+        <li><strong>Data Forwarding:</strong> Once the bridge node receives the data, it packages the sensor readings into a format suitable for transmission over the MQTT protocol. The bridge node then forwards the data to the MQTT broker (either locally or in the cloud), where it can be accessed by the central monitoring system or dashboard.</li>
+        <li><strong>Error Handling:</strong> If the bridge node is unable to receive data or encounters issues with communication, it retries the transmission or alerts the system about the failure.</li>
+        <li><strong>Low Power Management:</strong> Like the sensor nodes, the bridge node also utilizes sleep modes to conserve power, especially in battery-operated setups.</li>
+    </ul>
+
+    <h3>Remote Configuration via MQTT:</h3>
+    <p>Using MQTT, users can remotely configure the system. This includes:</p>
+    <ul>
+        <li><strong>Threshold Adjustment:</strong> Users can remotely change the temperature and humidity thresholds for triggering alerts.</li>
+        <li><strong>Data Interval Adjustment:</strong> The frequency of sensor readings and data transmission intervals can be adjusted remotely to optimize performance based on user needs or network conditions.</li>
+    </ul>
+
+    <h3>Real-Time Data Monitoring:</h3>
+    <p>Through the MQTT broker, real-time data from all sensor nodes is accessible via a central dashboard, where users can monitor temperature, humidity, and system health. The system provides live updates and allows users to track environmental parameters continuously.</p>
+</section>
+<section id="instructions" class="content-section">
+    <h2 class="section-title">Instructions on How to Apply and Use the System</h2>
+    
+    <p>This section provides step-by-step instructions on how to set up, configure, and use the wireless sensor network (WSN) system. The system is designed to be easy to deploy and use for real-time environmental monitoring.</p>
+
+    <h3>1. Hardware Setup</h3>
+    <p>Follow the steps below to set up the hardware components of the system:</p>
+    <ul>
+        <li><strong>Step 1:</strong> Assemble the hardware components, including ESP32 boards, DHT sensors (for temperature and humidity), and necessary power supplies.</li>
+        <li><strong>Step 2:</strong> Connect the DHT sensors to the ESP32 boards, ensuring that the sensor's data pin is connected to the correct GPIO pin on the ESP32.</li>
+        <li><strong>Step 3:</strong> Power on the ESP32 boards and ensure they are connected to the network. If using battery-powered sensors, ensure they are in low power mode to extend battery life.</li>
+    </ul>
+
+    <h3>2. Software Setup</h3>
+    <p>To begin using the system, the following software configurations need to be done:</p>
+    <ul>
+        <li><strong>Step 1:</strong> Install the necessary software libraries for the ESP32 board, including the DHT sensor library and ESP-NOW/MQTT library for communication.</li>
+        <li><strong>Step 2:</strong> Download the provided source code for the sensor node and bridge node. Upload the respective code to the corresponding ESP32 devices using the Arduino IDE or PlatformIO.</li>
+        <li><strong>Step 3:</strong> Configure the MQTT broker settings in the source code to connect to your cloud platform or MQTT broker.</li>
+    </ul>
+
+    <h3>3. System Configuration</h3>
+    <p>To configure the system for optimal performance, follow these steps:</p>
+    <ul>
+        <li><strong>Step 1:</strong> Define the environmental parameters you want to monitor (e.g., temperature range, humidity levels) in the software configuration files.</li>
+        <li><strong>Step 2:</strong> Set the desired data transmission frequency and thresholds for triggering alerts (e.g., when temperature or humidity goes above/below certain limits).</li>
+        <li><strong>Step 3:</strong> Set up the communication between nodes. Each sensor node will communicate with the bridge node via ESP-NOW, and the bridge node will transmit data to the MQTT broker.</li>
+    </ul>
+
+    <h3>4. Monitoring and Alerts</h3>
+    <p>Once the system is set up and running, the following monitoring options are available:</p>
+    <ul>
+        <li><strong>Step 1:</strong> Access real-time data from the system by connecting to the MQTT broker via a monitoring interface or application (e.g., a mobile app, web dashboard).</li>
+        <li><strong>Step 2:</strong> Receive alerts when the environmental parameters exceed the predefined thresholds. Alerts can be sent via email, SMS, or app notifications depending on your setup.</li>
+        <li><strong>Step 3:</strong> Review historical data to monitor trends in temperature and humidity over time.</li>
+    </ul>
+
+    <h3>5. Troubleshooting</h3>
+    <p>If you encounter any issues while setting up or using the system, consider the following troubleshooting steps:</p>
+    <ul>
+        <li>Check the wiring and ensure that the sensors are properly connected to the ESP32 boards.</li>
+        <li>Ensure the devices are correctly powered and that the Wi-Fi network is stable.</li>
+        <li>If data transmission fails, verify that the ESP-NOW and MQTT configurations are correct, and check the connection to the MQTT broker.</li>
+        <li>Refer to the system logs for any error messages and consult the troubleshooting guide provided with the system documentation.</li>
+    </ul>
+
+    <h3>6. System Updates</h3>
+    <p>Periodically, system software updates might be released to improve performance or add new features. To update your system:</p>
+    <ul>
+        <li><strong>Step 1:</strong> Download the latest version of the source code from the project repository.</li>
+        <li><strong>Step 2:</strong> Upload the updated code to the ESP32 boards.</li>
+        <li><strong>Step 3:</strong> Restart the system and verify that it is functioning with the new updates.</li>
+    </ul>
+</section>
+
+<!-- Testing Section -->
+<section id="testing" class="content-section">
+    <h2 class="section-title">Results and Testing</h2>
+    <p>The system undergoes several types of testing to ensure reliability, accuracy, and performance. These tests include unit testing, integration testing, and system performance testing. Below is a description of each type of testing:</p>
+
+    <h3>Unit Testing:</h3>
+    <p>Unit testing involves testing individual components or units of the system in isolation to verify their correct functionality. For this project, unit tests were performed on the following components:</p>
+    <ul>
+        <li><strong>Sensor Reading:</strong> Each sensor (DHT11/DHT22) was tested independently to ensure it correctly reads the environmental data, including temperature and humidity.</li>
+        <li><strong>ESP32 Communication:</strong> The ESP32 microcontroller was tested to ensure that it successfully transmits data using the ESP-NOW protocol and receives data correctly from other nodes.</li>
+        <li><strong>Power Management:</strong> The power consumption and deep sleep functionality were tested to ensure that the nodes could function on low power for extended periods, simulating real-world deployment conditions.</li>
+    </ul>
+
+    <h3>Integration Testing:</h3>
+    <p>Integration testing ensures that different components of the system work together as expected. This phase involves testing the interaction between the sensor nodes, bridge node, and central MQTT broker. Key integration tests included:</p>
+    <ul>
+        <li><strong>Sensor Node to Bridge Node Communication:</strong> The sensor nodes were tested for their ability to send data to the bridge node using the ESP-NOW protocol. This includes verifying data integrity and ensuring that the bridge node can handle data from multiple sensor nodes.</li>
+        <li><strong>Bridge Node to MQTT Broker Communication:</strong> The bridge node was tested to ensure that it can forward the collected data from the sensor nodes to the MQTT broker correctly. Data sent from multiple sensor nodes was checked for accuracy and proper formatting.</li>
+        <li><strong>Real-time Data Display:</strong> Integration tests verified that the data displayed on the cloud-based MQTT dashboard or monitoring system accurately reflects the real-time values sent from the sensor nodes.</li>
+    </ul>
+
+    <h3>System Performance Testing:</h3>
+    <p>System performance testing focuses on the overall system's behavior under different conditions. The main objective is to ensure the system performs efficiently, is scalable, and meets the required performance criteria. Key performance tests included:</p>
+    <ul>
+        <li><strong>Scalability Testing:</strong> The system was tested with varying numbers of sensor nodes to determine how well it scales. The performance of the system was monitored with increasing node counts to identify any slowdowns or issues with data transmission and handling.</li>
+        <li><strong>Latency Testing:</strong> The latency between data collection at the sensor node and display on the MQTT dashboard was measured. This test ensured that the system provides real-time data monitoring without noticeable delays.</li>
+        <li><strong>Energy Consumption Testing:</strong> Performance was evaluated in terms of energy usage. This testing ensured that the nodes in deep sleep mode and periodic duty cycling maintained low power consumption, providing long-term operational efficiency.</li>
+        <li><strong>Load Testing:</strong> The system's ability to handle high-frequency data updates and large amounts of sensor data was tested to simulate a heavy load scenario. This helped identify any bottlenecks in the data transmission or processing.</li>
+    </ul>
+
+    <!-- Merged Results Section -->
+    <h3>Sensor Data and Communication Output</h3>
+    <p>The IoT system is designed to monitor environmental parameters such as temperature and humidity. Below are some results:</p>
+    <ul>
+        <li>Sensor Node 1 measured temperature: 22.5°C, Humidity: 60%</li>
+        <li>Sensor Node 2 measured temperature: 28.0°C, Humidity: 58%</li>
+        <li>Sensor Node 3 triggered an alert for high temperature: 32.5°C</li>
+        <li>The system successfully registered new nodes and communicated data to the bridge node via ESP-NOW.</li>
+        <li>The data was forwarded to the MQTT broker for remote monitoring, and alerts were sent if the temperature exceeded the threshold.</li>
+    </ul>
+    <p>Below is an image that illustrates the system's communication and data flow:</p>
+
+    <div class="img-container mt-4" style="text-align: center;">
+    <!-- Replace the 'image-path.jpg' with the actual path of your output image -->
+    <img class="output-image" src="./images/outputs.png" alt="System Output Image" style="max-width: 100%; height: auto; border-radius: 10px;">
+</div>
+
+</section>
+<section id="reflection" class="content-section">
+    <h2 class="section-title">Reflection: Problems Encountered; Solutions Adopted</h2>
+    <p>Throughout the development of this IoT system, several challenges were encountered. Below is a summary of the main problems faced and the solutions implemented to overcome them:</p>
+
+    <h3>1. Problem: Data Loss Between Sensor Nodes and Bridge Node</h3>
+    <p><strong>Issue:</strong> One of the main challenges was data loss during communication between the sensor nodes and the bridge node, especially when there were multiple sensor nodes trying to send data simultaneously.</p>
+    <p><strong>Solution:</strong> To address this, the ESP-NOW communication protocol was optimized to handle multiple data packets more efficiently. We implemented a retry mechanism for data transmission and ensured proper error handling in case of communication failures. Additionally, the communication frequency was reduced to prevent congestion on the wireless network.</p>
+
+    <h3>2. Problem: High Power Consumption in Sensor Nodes</h3>
+    <p><strong>Issue:</strong> The sensor nodes initially consumed more power than expected, which could lead to reduced battery life, especially in outdoor deployments where charging options are limited.</p>
+    <p><strong>Solution:</strong> We adopted a deep sleep mechanism for the ESP32 microcontroller and optimized the duty cycle. The nodes were programmed to go into deep sleep mode between data readings to conserve energy. A more efficient power management strategy was developed to ensure that the system operated for extended periods on a single charge.</p>
+
+    <h3>3. Problem: Latency in Data Transfer to the MQTT Broker</h3>
+    <p><strong>Issue:</strong> During initial testing, there was noticeable latency in data transmission between the bridge node and the MQTT broker. This delay was particularly evident when sending real-time sensor data.</p>
+    <p><strong>Solution:</strong> To reduce the latency, the system architecture was optimized by fine-tuning the communication intervals between the bridge node and the MQTT broker. Additionally, the MQTT broker was configured for better message queuing and prioritization, ensuring faster message delivery.</p>
+
+    <h3>4. Problem: Limited Range of ESP-NOW Communication</h3>
+    <p><strong>Issue:</strong> The communication range of the ESP-NOW protocol was initially limited, causing communication failures between sensor nodes and the bridge node when the nodes were placed far apart.</p>
+    <p><strong>Solution:</strong> To extend the communication range, we placed the bridge node in a more central location within the deployment area and used external antennas for better signal reception. In cases where the range was still insufficient, additional repeater nodes were used to extend the network coverage.</p>
+
+    <h3>5. Problem: System Scalability Issues with Increasing Nodes</h3>
+    <p><strong>Issue:</strong> As more sensor nodes were added to the system, there was a noticeable decrease in performance, including slower data processing and transmission delays.</p>
+    <p><strong>Solution:</strong> Scalability was addressed by implementing a more efficient data-handling strategy on the bridge node. The system was also designed to support a hierarchical node structure, where nodes could forward data to intermediate nodes before reaching the bridge node. This significantly improved scalability and performance with multiple nodes in the system.</p>
+
+    <h3>6. Problem: MQTT Broker Overload with Large Amounts of Data</h3>
+    <p><strong>Issue:</strong> The MQTT broker faced overload issues when handling large volumes of sensor data coming from multiple nodes. This caused delays in data processing and message delivery.</p>
+    <p><strong>Solution:</strong> To alleviate this, the system was designed to send aggregated data from the sensor nodes at regular intervals instead of sending raw data continuously. The MQTT broker was also scaled horizontally to ensure better load distribution and improved data processing capabilities.</p>
+
+    <h3>Lessons Learned:</h3>
+    <ul>
+        <li>Proper error handling and data integrity checks are essential to ensure reliable communication between nodes.</li>
+        <li>Energy-efficient designs are crucial for long-term operation, especially in remote or off-grid environments.</li>
+        <li>Optimization of system performance and latency is key to real-time monitoring in IoT systems.</li>
+        <li>Scalability must be considered from the beginning to ensure that the system can handle an increasing number of devices efficiently.</li>
+    </ul>
+
+    <p>These challenges provided valuable insights into the complexities of developing an IoT system and have helped refine the approach to solving these issues. The solutions adopted not only resolved the immediate problems but also contributed to the overall robustness and reliability of the system.</p>
+</section>
+
+
+
 
     <!-- Energy Efficiency Section -->
     <section id="energy-analysis" class="content-section">
