@@ -154,8 +154,8 @@
 <section id="architecture" class="content-section">
     <h2 class="section-title">System Architecture</h2>
     <p>The system architecture consists of multiple sensor nodes, a central bridge node, and a cloud-based server or MQTT broker. The architecture is designed to enable efficient and reliable environmental monitoring with real-time data collection and alerting capabilities.</p>
-    <p><strong>System Process Flow:</strong> Below is the flowchart that illustrates the step-by-step process of how the system operates, from data collection by sensor nodes to cloud-based monitoring:</p>
-    <img src="./images/flowchart.jpeg" alt="System Process Flowchart" class="img-fluid mt-4">
+    <p><img src="./images/architecture.jpg" alt="System Architecture Diagram" class="img-fluid mt-4"></p>
+</section>
     
     <p>The flowchart visually depicts how data flows from sensor nodes to the bridge node and eventually to the MQTT broker for remote monitoring.</p>
     
@@ -166,9 +166,10 @@
     <p><strong>Central Server / MQTT Broker:</strong> The MQTT broker, hosted on a cloud platform or local server, is responsible for receiving and storing the data from the bridge node. It provides a communication hub for the sensor nodes and the bridge node. Using the MQTT protocol ensures that data is transmitted efficiently and securely. The central server monitors the incoming data for any irregularities or thresholds that exceed predefined limits. If an anomaly is detected (e.g., temperature or humidity levels that fall outside acceptable ranges), it triggers alerts, which can be sent to remote users or integrated with other systems for further action.</p>
 
     <p>This architecture is scalable, meaning additional sensor nodes can be added easily to expand coverage over larger areas. The system also supports flexible remote configuration through MQTT, allowing users to adjust the thresholds and polling intervals without needing direct physical access to the nodes.</p>
+    <p><strong>System Process Flow:</strong> Below is the flowchart that illustrates the step-by-step process of how the system operates, from data collection by sensor nodes to cloud-based monitoring:</p>
+    <img src="./images/flowchart.jpeg" alt="System Process Flowchart" class="img-fluid mt-4">
     
-    <p><img src="./images/architecture.jpg" alt="System Architecture Diagram" class="img-fluid mt-4"></p>
-</section>
+    
 
  <!-- Hardware Design Section -->
  <section id="hardware-design" class="content-section">
@@ -308,6 +309,8 @@
         <li><strong>Energy Consumption Testing:</strong> Performance was evaluated in terms of energy usage. This testing ensured that the nodes in deep sleep mode and periodic duty cycling maintained low power consumption, providing long-term operational efficiency.</li>
         <li><strong>Load Testing:</strong> The system's ability to handle high-frequency data updates and large amounts of sensor data was tested to simulate a heavy load scenario. This helped identify any bottlenecks in the data transmission or processing.</li>
     </ul>
+    <p>Below is an image of mqtt testing</p>
+    <img class="output-image" src="./images/testing_mqtt.png" alt="System Output Image" style="max-width: 100%; height: auto; border-radius: 10px;">
 
     <!-- Merged Results Section -->
     <h3>Sensor Data and Communication Output</h3>
@@ -324,6 +327,8 @@
     <div class="img-container mt-4" style="text-align: center;">
     <!-- Replace the 'image-path.jpg' with the actual path of your output image -->
     <img class="output-image" src="./images/outputs.png" alt="System Output Image" style="max-width: 100%; height: auto; border-radius: 10px;">
+    <img class="output-image" src="./images/sensing_node.png" alt="System Output Image" style="max-width: 100%; height: auto; border-radius: 10px;">
+    <img class="output-image" src="./images/bridge_node.png" alt="System Output Image" style="max-width: 100%; height: auto; border-radius: 10px;">
 </div>
 
 </section>
@@ -390,11 +395,58 @@
         </ul>
     </section>
 
-    <!-- Conclusion Section -->
-    <section id="conclusion" class="content-section">
-        <h2 class="section-title">Conclusion</h2>
-        <p>This IoT-based wireless sensor network successfully monitors environmental conditions while optimizing for energy efficiency. The system is scalable, reliable, and suitable for long-term deployment in remote areas. Future work will focus on improving the communication range and adding additional sensors for more comprehensive monitoring.</p>
+    <section id="future-work" class="content-section">
+        <h2 class="section-title">Future Work and Development Ideas</h2>
+        <p>The current implementation of the IoT system provides a robust platform for environmental monitoring and data management. However, there are several avenues for future improvements and extensions:</p>
+    
+        <h3>1. Enhanced Data Analytics:</h3>
+        <p>Incorporating advanced data analytics and machine learning algorithms to process collected environmental data could uncover trends and provide predictive insights. This could include:</p>
+        <ul>
+            <li><strong>Predictive Analysis:</strong> Forecasting temperature and humidity trends for better resource management.</li>
+            <li><strong>Anomaly Detection:</strong> Identifying irregularities in sensor readings that may indicate device malfunctions or environmental hazards.</li>
+        </ul>
+    
+        <h3>2. Improved Communication Protocols:</h3>
+        <p>Exploring alternative communication protocols to enhance reliability and reduce power consumption. Possible options include:</p>
+        <ul>
+            <li><strong>LoRaWAN:</strong> Implementing long-range wireless communication for greater coverage in rural or remote areas.</li>
+            <li><strong>BLE Mesh:</strong> Utilizing Bluetooth Mesh for dense networks with multiple interconnected nodes.</li>
+        </ul>
+    
+        <h3>3. Hardware Optimization:</h3>
+        <p>Future iterations of the system could focus on optimizing the hardware to improve performance and energy efficiency:</p>
+        <ul>
+            <li><strong>Sensor Upgrades:</strong> Using more accurate and reliable sensors for diverse environmental parameters like air quality, pressure, or light intensity.</li>
+            <li><strong>Power Source Innovation:</strong> Integrating renewable energy sources, such as solar panels, to extend operational lifespan in off-grid deployments.</li>
+        </ul>
+    
+        <h3>4. Security Enhancements:</h3>
+        <p>Securing IoT systems is paramount to ensuring data integrity, privacy, and reliability. Future work could involve:</p>
+        <ul>
+            <li><strong>Data Encryption:</strong> Implementing end-to-end encryption for all communications between sensor nodes, bridge nodes, and the central server.</li>
+            <li><strong>Authentication Mechanisms:</strong> Adding robust authentication and authorization methods to prevent unauthorized access.</li>
+            <li><strong>Threat Monitoring:</strong> Developing systems to detect and mitigate potential cyber-attacks, such as denial-of-service (DoS) or data tampering.</li>
+        </ul>
+    
+        <h3>5. Scalability Improvements:</h3>
+        <p>Expanding the system to handle larger networks and growing data demands efficiently:</p>
+        <ul>
+            <li><strong>Cloud-Based Architecture:</strong> Shifting data storage and processing to scalable cloud platforms to support high data volumes.</li>
+            <li><strong>Dynamic Node Management:</strong> Developing mechanisms to dynamically add or remove sensor nodes without disrupting the existing network.</li>
+            <li><strong>Load Balancing:</strong> Implementing load-balancing techniques to distribute data processing and ensure high availability of services.</li>
+        </ul>
+    
+        <h3>6. User Interface Improvements:</h3>
+        <p>Developing a more intuitive and user-friendly interface for better data visualization and management. Future improvements could involve:</p>
+        <ul>
+            <li><strong>Custom Dashboards:</strong> Allowing users to personalize their dashboards to focus on specific metrics.</li>
+            <li><strong>Mobile Applications:</strong> Creating cross-platform mobile apps for on-the-go system monitoring and control.</li>
+        </ul>
+    
+        <p>By addressing these areas, the system could evolve into a more versatile, scalable, secure, and intelligent platform, capable of meeting a wide range of application requirements in various fields.</p>
     </section>
+    
+
 
 </div>
 
